@@ -1,3 +1,5 @@
+name: lint & release
+
 on:
   push:
     tags:
