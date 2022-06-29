@@ -1,0 +1,13 @@
+name: Reusable hadolint workflow
+
+on: workflow_call
+
+jobs:
+  sh-checker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run the hadolint
+        uses: hadolint/hadolint-action@v2.1.0
+        with:
+          ignore: DL3007, DL3018

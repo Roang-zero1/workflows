@@ -2,6 +2,27 @@
 
 Reusable workflows for my repositories
 
+## hadolint
+
+```yaml
+jobs:
+  uses: Roang-zero1/workflows/.github/workflows/hadolint.yml@v1
+```
+
+## sh-checker
+
+```yaml
+jobs:
+  uses: Roang-zero1/workflows/.github/workflows/sh-checker.yml@v1
+```
+
+### Inputs
+
+#### `shfmt_args`
+
+`shfmt` arguments to be passed along.  
+Defaults to `-i 2 -ci` (2 space indent, indented switch cases).
+
 ## create-release
 
 ```yaml

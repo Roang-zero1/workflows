@@ -1,0 +1,6 @@
+{
+    "yaml.schemas": {
+        "https://json.schemastore.org/github-workflow.json": "file:///home/lucas/projects/workflows/.github/workflows/hadolint.yml"
+    },
+    "editor.formatOnSave": true
+}
