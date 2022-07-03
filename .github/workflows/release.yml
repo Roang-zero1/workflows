@@ -9,4 +9,8 @@ jobs:
   actionlint:
     uses: ./.github/workflows/actionlint.yml
   release:
+    needs: [actionlint]
     uses: ./.github/workflows/create-release.yml
+  update-major-version-tag:
+    needs: [release]
+    uses: ./.github/workflows/update-major-version-tag.yml
