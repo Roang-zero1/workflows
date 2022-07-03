@@ -36,3 +36,18 @@ jobs:
 
 Allow updating of existing releases.
 Defaults to `true`.
+
+## update-major-version-tag
+
+```yaml
+jobs:
+  update-major-version-tag:
+    uses: Roang-zero1/workflows/.github/workflows/create-release.yml@v1
+```
+
+### Inputs
+
+#### `force_push_tag`
+
+Allow updating of existing releases.
+Defaults to `true`.

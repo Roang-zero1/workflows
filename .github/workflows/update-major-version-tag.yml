@@ -1,0 +1,33 @@
+name: Reusable workflow to update the major version tag
+
+on:
+  workflow_call:
+    inputs:
+      force_push_tag:
+        description: "Optional. Force push the tag. Defaults to 'false'."
+        type: string
+        required: false
+        default: "true"
+
+jobs:
+  update-major-version-tag:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Extract TAG
+        id: extract-tag
+        run: |
+          TAG="$(echo "${GITHUB_REF}" | grep tags | sed --regexp-extended 's/^\w+\/\w+\///g' || true)"
+          MAJOR_TAG="$(echo "${TAG}" | sed --regexp-extended 's/\.[[:digit:]]+//g' || true)"
+          if [ -z "$TAG" ]; then
+            echo "::error::This is not a tagged push." 1>&2
+            exit 1
+          fi
+          echo "::set-output name=TAG::${TAG}"
+          echo "::set-output name=MAJOR_TAG::${MAJOR_TAG}"
+      - name: Create major version tag
+        uses: rickstaa/action-create-tag@v1
+        with:
+          tag: ${{ steps.extract-tag.outputs.MAJOR_TAG }}
+          message: "Latest ${{steps.extract-tag.outputs.MAJOR_TAG}} release"
+          force_push_tag: ${{ inputs.force_push_tag }}
