@@ -30,7 +30,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
-          tag: "${GITHUB_REF}"
+          tag: ${{ github.action_ref }}
       - name: Create major version tag
         uses: rickstaa/action-create-tag@v1
         with:
