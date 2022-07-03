@@ -25,15 +25,9 @@ jobs:
           fi
           echo "::set-output name=TAG::${TAG}"
           echo "::set-output name=MAJOR_TAG::${MAJOR_TAG}"
-      - uses: cardinalby/git-get-release-action@v1
-        id: get-release
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-        with:
-          tag: ${{ steps.extract-tag.outputs.TAG }}
       - name: Create major version tag
         uses: rickstaa/action-create-tag@v1
         with:
           tag: ${{ steps.extract-tag.outputs.MAJOR_TAG }}
-          message: "Latest release, for detailed changes see: [${{ steps.extract-tag.outputs.TAG }}](${{ steps.get-release.outputs.html_url }})"
+          message: "Latest ${{steps.extract-tag.outputs.MAJOR_TAG}} release"
           force_push_tag: ${{ inputs.force_push_tag }}
