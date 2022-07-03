@@ -23,8 +23,8 @@ jobs:
             echo "::error::This is not a tagged push." 1>&2
             exit 1
           fi
-          echo '::set-output name=TAG::${TAG}'
-          echo '::set-output name=MAJOR_TAG::${MAJOR_TAG}'
+          echo "::set-output name=TAG::${TAG}"
+          echo "::set-output name=MAJOR_TAG::${MAJOR_TAG}"
       - uses: cardinalby/git-get-release-action@v1
         id: get-release
         env:
